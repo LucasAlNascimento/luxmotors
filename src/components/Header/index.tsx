@@ -7,7 +7,7 @@ function Header() {
 
     return (
         <header className="flex justify-between items-center w-full h-20 px-10 bg-gray-200 shadow-md">
-            <div className="flex w-full max-w-7xl items-center m-auto">
+            <div className="flex w-full items-center m-auto">
                 <img
                     src="./src/assets/logo-lux.png"
                     alt="Logo Luxmotors"

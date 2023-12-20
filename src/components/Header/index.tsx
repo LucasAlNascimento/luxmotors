@@ -6,12 +6,12 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 function Header() {
 
     return (
-        <header className="flex justify-between items-center w-full h-20 px-10 bg-gray-200 shadow-md">
+        <header className="flex justify-between items-center w-full h-20 px-5 bg-gray-200 shadow-md md:px-11">
             <div className="flex w-full items-center m-auto">
                 <img
-                    src="./src/assets/logo-lux.png"
+                    src="./src/assets/logolux.svg"
                     alt="Logo Luxmotors"
-                    className="w-40"
+                    className="w-44"
                 />
             </div>
             <div className="flex justify-between gap-6">

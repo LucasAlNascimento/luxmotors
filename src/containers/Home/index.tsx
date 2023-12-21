@@ -4,12 +4,12 @@ import Search from '../../components/Search';
 
 
 function Home() {
-  
+
   return (
     <div>
-        <Header />
-        <Slider />
-        <Search />
+      <Header />
+      <Slider />
+      <Search />
     </div>
   );
 }

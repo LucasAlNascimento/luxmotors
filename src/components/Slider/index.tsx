@@ -22,7 +22,7 @@ function Slider() {
             >
                 {images.map((item) => (
                     <SwiperSlide key={item.id}>
-                        <div className="w-full h-96">
+                        <div>
                             <img
                                 src={item.image}
                                 alt="slider"

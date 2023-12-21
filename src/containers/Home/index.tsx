@@ -1,5 +1,6 @@
 import Header from '../../components/Header';
 import Slider from '../../components/Slider';
+import Search from '../../components/Search';
 
 
 function Home() {
@@ -8,6 +9,7 @@ function Home() {
     <div>
         <Header />
         <Slider />
+        <Search />
     </div>
   );
 }

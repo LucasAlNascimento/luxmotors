@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faCircleUser, faHeart } from '@fortawesome/free-regular-svg-icons'
 
 
 function Header() {
@@ -16,7 +15,7 @@ function Header() {
             </div>
             <div className="flex justify-between gap-6">
                 <button className="flex items-center justify-center gap-2">
-                    <FontAwesomeIcon icon={faCircleUser} style={{ color: "#000000", fontSize: "25px" }} />
+                    <FontAwesomeIcon icon={faCircleUser} style={{color: "#000000", fontSize: "25px" }} />
                     <a className="font-medium">Entrar</a>
                 </button>
                 <button className="flex items-center justify-center gap-2">

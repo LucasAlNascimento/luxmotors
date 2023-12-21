@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'fabrikatMedium': ['Fabrikat Medium'],
+        'fabrikatBold': ['Fabrikat Bold']
+      }
+    },
   },
   plugins: [],
 }

@@ -16,7 +16,7 @@ function Header() {
             <div className="flex justify-between gap-6">
                 <button className="flex items-center justify-center gap-2">
                     <FontAwesomeIcon icon={faCircleUser} style={{color: "#000000", fontSize: "25px" }} />
-                    <a className="font-medium">Entrar</a>
+                    <a className="font-fabrikatMedium mt-[2px]">Entrar</a>
                 </button>
                 <button className="flex items-center justify-center gap-2">
                     <FontAwesomeIcon icon={faHeart} style={{ color: "#000000", fontSize: "25px" }} />

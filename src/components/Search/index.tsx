@@ -2,10 +2,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 function Search() {
-
+//top-[420px] left-[12%]  md:left-1/4
   return (
-    <div className="absolute z-10 top-[420px] left-[12%] w-96 h-24 bg-gray-200 rounded-full shadow-xl md:w-1/2 md:left-1/4">
-      <div className="flex flex-col items-center justify-center mx-16 my-2 gap-6 lg:flex lg:flex-row lg:justify-between lg:mx-3">
+    <div className="relative z-10 mx-auto my-auto -translate-y-11 w-96 h-24 bg-gray-200 rounded-full shadow-xl md:w-1/2">
+      <div className="flex flex-col items-center justify-center mx-16 translate-y-2 gap-6 lg:flex-row lg:justify-between lg:mx-3">
         <input 
           className="w-full h-20 px-6 outline-none rounded-full bg-transparent text-xl"
           type="text"

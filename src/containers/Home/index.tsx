@@ -1,6 +1,7 @@
 import Header from '../../components/Header';
 import Slider from '../../components/Slider';
 import Search from '../../components/Search';
+import Brands from '../../components/Brands';
 
 
 function Home() {
@@ -10,6 +11,7 @@ function Home() {
       <Header />
       <Slider />
       <Search />
+      <Brands />
     </div>
   );
 }

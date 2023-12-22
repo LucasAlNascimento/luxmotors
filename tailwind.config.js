@@ -9,6 +9,10 @@ export default {
       fontFamily: {
         'fabrikatMedium': ['Fabrikat Medium'],
         'fabrikatBold': ['Fabrikat Bold']
+      },
+      screens: {
+        '2xl': '1536px',
+        '3xl': '1660px'
       }
     },
   },

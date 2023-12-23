@@ -12,10 +12,11 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/effect-fade';
 
 import Home from './containers/Home'
+import Catalog from './containers/Catalog';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Home />
+    <Catalog />
     
   </React.StrictMode>,
 )

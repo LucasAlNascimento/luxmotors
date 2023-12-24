@@ -16,7 +16,7 @@ import Catalog from './containers/Catalog';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Catalog />
+    <Home />
     
   </React.StrictMode>,
 )

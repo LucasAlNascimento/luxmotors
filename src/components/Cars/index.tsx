@@ -48,7 +48,7 @@ function Cars() {
     ];
 
     return (
-        <div className="grid grid-cols-2 w-auto h-screen mx-10 -mt-32 place-items-center">
+        <div className="grid grid-cols-1 w-auto h-screen mx-10 -mt-36 place-items-center lg:grid-cols-2 lg:-mt-32">
             {carros.map(carro => (
                 <div className="w-[90%] h-80 font-fabrikatMedium px-14 py-5 mt-48 bg-gray-200 rounded-3xl" key={carro.id}>
                     <div className="w-full h-full rounded-full hover:scale-105 hover:opacity-60 duration-700">

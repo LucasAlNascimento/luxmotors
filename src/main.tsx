@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import Routing from './Routing';
 
 import './styles/styles.css'
 
@@ -11,12 +12,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/effect-fade';
 
-import Home from './containers/Home'
-import Catalog from './containers/Catalog';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Catalog />
-    
+    <Routing />
   </React.StrictMode>,
 )

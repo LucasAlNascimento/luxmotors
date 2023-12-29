@@ -1,18 +1,25 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
+
+import { useDispatch } from 'react-redux';
+import { filterCars } from '../../redux/cars/sliceCars';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 function Search() {
 
-  const [search, setSearch] = useState('');
+  const [searchCar, setSearchCar] = useState('');
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSearch = (event: React.FormEvent) => {
-    event.preventDefault();
+
+  const handleSearch = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(filterCars({ marca: searchCar, modelo: searchCar }));
     navigate('/catalog');
-  }
+  };
 
   return (
     <div className="relative z-10 mx-auto my-auto -translate-y-11 w-96 h-24 bg-gray-200 rounded-full shadow-xl md:w-1/2">
@@ -22,10 +29,10 @@ function Search() {
       >
         <input
           className="w-full h-20 px-6 outline-none rounded-full bg-transparent text-xl"
-          type="search"
-          value={search}
+          type="text"
+          value={searchCar}
           placeholder="Digite a marca ou modelo do carro"
-          onChange={({ target }) => setSearch(target.value)}
+          onChange={(event) => setSearchCar(event.target.value)}
           required
         />
         <button
@@ -39,5 +46,6 @@ function Search() {
     </div>
   );
 }
+
 
 export default Search;

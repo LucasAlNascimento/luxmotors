@@ -1,12 +1,14 @@
-interface Carro {
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+
+export interface Car {
     id: number;
     marca: string;
     modelo: string;
     ano: number;
     imagem: string;
-  }
+}
 
-const carros: Carro[] = [
+const INITIAL_STATE: Car[] = [
     {
         id: 1,
         marca: 'Audi',
@@ -52,4 +54,24 @@ const carros: Carro[] = [
 
 ];
 
-export default carros;
+const sliceCars = createSlice({
+    name: 'cars',
+    initialState: INITIAL_STATE,
+    reducers: {
+        filterCars(state, { payload }: PayloadAction<{ marca: string; modelo: string }>) {
+            return state.filter((car) => car.marca.includes(payload.marca) || car.modelo.includes(payload.modelo));
+        },
+        resetCars: (state) => {
+            console.log('Resetando carros...', state);
+            return INITIAL_STATE;
+        },
+    },
+});
+
+export default sliceCars.reducer;
+export const { filterCars, resetCars } = sliceCars.actions;
+
+
+export const useCars = (state: any) => {
+    return state.cars as Car[];
+}

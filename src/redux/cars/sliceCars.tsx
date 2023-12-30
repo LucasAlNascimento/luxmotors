@@ -61,8 +61,7 @@ const sliceCars = createSlice({
         filterCars(state, { payload }: PayloadAction<{ marca: string; modelo: string }>) {
             return state.filter((car) => car.marca.includes(payload.marca) || car.modelo.includes(payload.modelo));
         },
-        resetCars: (state) => {
-            console.log('Resetando carros...', state);
+        resetCars: () => {
             return INITIAL_STATE;
         },
     },

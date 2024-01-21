@@ -15,10 +15,9 @@ function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Aqui, você pode despachar a ação para redefinir o estado quando o usuário volta para a home
-    dispatch(resetCars());
 
-    // Certifique-se de incluir 'dispatch' como uma dependência se você estiver usando eslint
+    dispatch(resetCars());
+    
   }, [dispatch]);
 
   return (

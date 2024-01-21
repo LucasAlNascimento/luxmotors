@@ -13,7 +13,7 @@ function Cars() {
       ) : cars.length === 0 ? (
         <p>Nenhum carro disponível.</p>
       ) : (
-        cars.map((carro) => <CarCard key={carro.id} cars={carro} />)
+        cars.map((carro) => <CarCard key={carro.id} carro={carro} />)
       )}
     </div>
   );

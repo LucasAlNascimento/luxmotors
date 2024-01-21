@@ -11,7 +11,7 @@ function Header() {
             <div className="flex w-full items-center m-auto">
                 <Link to="/">
                     <img
-                        src="./src/assets/logolux.svg"
+                        src="/src/assets/logolux.svg"
                         alt="Logo Luxmotors"
                         className="w-44 cursor-pointer"
                     />

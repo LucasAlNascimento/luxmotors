@@ -2,12 +2,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 function Slider() {
     const images = [
-        { id: '1', image: './src/assets/slider/range-rover.avif' },
-        { id: '2', image: './src/assets/slider/porsche-interior.webp' },
-        { id: '3', image: './src/assets/slider/audi.jpg' },
-        { id: '4', image: './src/assets/slider/jaguar-interior.jpg' },
-        { id: '5', image: './src/assets/slider/bmw.jpg' },
-        { id: '6', image: './src/assets/slider/porsche.jpg' },
+        { id: '1', image: '/assets/slider/range-rover.avif' },
+        { id: '2', image: '/assets/slider/porsche-interior.webp' },
+        { id: '3', image: '/assets/slider/audi.jpg' },
+        { id: '4', image: '/assets/slider/jaguar-interior.jpg' },
+        { id: '5', image: '/assets/slider/bmw.jpg' },
+        { id: '6', image: '/assets/slider/porsche.jpg' },
     ];
 
     return (

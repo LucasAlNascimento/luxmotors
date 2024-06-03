@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser, faHeart } from '@fortawesome/free-regular-svg-icons'
 
 
+
 function Header() {
 
     return (
@@ -11,7 +12,7 @@ function Header() {
             <div className="flex w-full items-center m-auto">
                 <Link to="/">
                     <img
-                        src="/src/assets/logolux.svg"
+                        src="/assets/logos/logolux.svg"
                         alt="Logo Luxmotors"
                         className="w-44 cursor-pointer"
                     />

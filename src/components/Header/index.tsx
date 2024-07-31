@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser, faHeart } from '@fortawesome/free-regular-svg-icons'
 
-
-
 function Header() {
 
     return (

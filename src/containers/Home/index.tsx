@@ -17,19 +17,19 @@ function Home() {
   useEffect(() => {
 
     dispatch(resetCars());
-    
+
   }, [dispatch]);
 
   return (
-    <div>
+    <main>
       <Header />
-      <Slider />
-      <Search />
-      <Brands />
-      <div className="relative">
-        <Footer />
+      <div className='flex flex-col h-full'>
+        <Slider />
+        <Search />
+        <Brands />
       </div>
-    </div>
+      <Footer />
+    </main>
   );
 }
 

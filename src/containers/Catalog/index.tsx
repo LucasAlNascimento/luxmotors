@@ -5,9 +5,11 @@ import Header from "../../components/Header";
 function Catalog() {
 
   return (
-    <main className="flex flex-col min-h-screen">
-      <Header />
-      <Cars />
+    <main>
+      <div className="flex flex-col h-[91vh]">
+        <Header />
+        <Cars />
+      </div>
       <Footer />
     </main>
   );

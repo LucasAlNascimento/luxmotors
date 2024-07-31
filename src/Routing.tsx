@@ -1,12 +1,10 @@
-import { BrowserRouter , Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Home from "./containers/Home";
 import Catalog from "./containers/Catalog";
 import CarDetailVerification from "./components/CarDetailVerification";
 
-
 function Routing() {
-
     return (
         <BrowserRouter>
             <Routes>
@@ -16,7 +14,6 @@ function Routing() {
             </Routes>
         </BrowserRouter>
     )
-};
-
+}
 
 export default Routing;

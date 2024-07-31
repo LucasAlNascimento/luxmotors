@@ -15,9 +15,9 @@ interface CarroProps {
 
 function CarDetail({ carro }: CarroProps) {
   return (
-    <div className="flex flex-col min-h-screen">
+    <main className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex flex-col justify-center items-center mx-auto w-1/4 p-4 flex-grow">
+      <div className="flex flex-col flex-grow justify-center items-center p-4 mx-auto">
         <div className="w-full h-96 rounded-3xl">
           <img
             className="w-full h-full rounded-t-3xl object-cover"
@@ -29,15 +29,15 @@ function CarDetail({ carro }: CarroProps) {
           <h2>{carro.marca} {carro.modelo}</h2>
           <p>Ano: {carro.ano}</p>
           <button
-          className="flex items-center justify-center gap-4 w-20 h-12 mt-4 bg-black rounded-xl text-gray-200 text-lg md:text-xl md:w-32 transition ease-in-out duration-700 hover:bg-yellow-400 hover:scale-105 hover:text-black"
-          type="submit"
-        >
-          <p className="hidden font-fabrikatBold md:flex">Reservar</p>
-        </button>
+            className="flex items-center justify-center gap-4 w-32 h-12 mt-4 bg-black rounded-xl text-gray-200 text-lg transition ease-in-out duration-700 hover:bg-yellow-400 hover:scale-105 hover:text-black"
+            type="submit"
+          >
+            <p className="font-fabrikatBold">Reservar</p>
+          </button>
         </div>
-      </main>
+      </div>
       <Footer />
-    </div>
+    </main>
   );
 }
 

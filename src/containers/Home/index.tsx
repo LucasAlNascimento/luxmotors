@@ -23,11 +23,9 @@ function Home() {
   return (
     <main>
       <Header />
-      <div className='flex flex-col h-full'>
-        <Slider />
-        <Search />
-        <Brands />
-      </div>
+      <Slider />
+      <Search />
+      <Brands />
       <Footer />
     </main>
   );

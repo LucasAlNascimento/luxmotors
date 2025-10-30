@@ -1,2 +1,2 @@
 # luxmotors
- Projeto React + Redux + Typescript + Tailwind CSS
+ Projeto React + Typescript + Tailwind CSS

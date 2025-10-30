@@ -2,26 +2,28 @@
 @tailwind components;
 
 @font-face {
-    font-family: "Fabrikat Normal";
-    src: url("/assets/fonts/HvDTrial_FabrikatNormal-Regular-BF64b73f664a7f1.otf") format("opentype");
-    font-weight: normal;
+	font-family: "Fabrikat Normal";
+	src: url("/assets/fonts/HvDTrial_FabrikatNormal-Regular-BF64b73f664a7f1.otf") format("opentype");
+	font-weight: normal;
 }
+
 @font-face {
-    font-family: "Fabrikat Medium";
-    src: url("/assets/fonts/HvDTrial_FabrikatNormal-Medium-BF64b73f66ec71d.otf") format("opentype");
-    font-weight: medium;
+	font-family: "Fabrikat Medium";
+	src: url("/assets/fonts/HvDTrial_FabrikatNormal-Medium-BF64b73f66ec71d.otf") format("opentype");
+	font-weight: medium;
 }
+
 @font-face {
-    font-family: "Fabrikat Bold";
-    src: url("/assets/fonts/HvDTrial_FabrikatNormal-Bold-BF64b73f66ccb4b.otf") format("opentype");
-    font-weight: bold;
+	font-family: "Fabrikat Bold";
+	src: url("/assets/fonts/HvDTrial_FabrikatNormal-Bold-BF64b73f66ccb4b.otf") format("opentype");
+	font-weight: bold;
 }
 
 @tailwind utilities;
 
 :root {
-    margin: 0;
-    padding: 0;
-    background-color: #d3d3d3;
-    font-family: "Fabrikat Normal";
+	margin: 0;
+	padding: 0;
+	background-color: #d3d3d3;
+	font-family: "Fabrikat Normal";
 }

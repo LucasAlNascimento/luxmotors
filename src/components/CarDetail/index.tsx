@@ -18,7 +18,7 @@ export default function CarDetail() {
         <div className="w-full h-96 rounded-3xl">
           <img
             className="w-full h-full rounded-t-3xl object-cover"
-            src={`../../${carro.imagem}`}
+            src={`../../${carro.imgUrl}`}
             alt={`${carro.marca} ${carro.modelo}`}
           />
         </div>

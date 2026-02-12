@@ -7,11 +7,7 @@ export default function Header() {
     <header className="flex fixed top-0 z-50 justify-between items-center w-full p-5 bg-gray-200 shadow-md md:px-11">
       <div className="flex w-full items-center m-auto">
         <Link to="/">
-          <img
-            src="/assets/logos/logolux.svg"
-            alt="Logo Luxmotors"
-            className="w-44 cursor-pointer"
-          />
+          <img src="/assets/logos/logolux.svg" alt="Logo Luxmotors" className="w-44 cursor-pointer" />
         </Link>
       </div>
       <div className="flex justify-between gap-6">

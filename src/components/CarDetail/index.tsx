@@ -1,7 +1,5 @@
 import { useLocation } from "react-router-dom";
 import { Car } from "../../interfaces/car";
-import Footer from "../Footer";
-import Header from "../Header";
 
 export default function CarDetail() {
   const location = useLocation();
@@ -12,8 +10,7 @@ export default function CarDetail() {
   }
 
   return (
-    <main className="flex flex-col min-h-screen">
-      <Header />
+    <div className="flex flex-col min-h-screen">
       <div className="flex flex-col flex-grow justify-center items-center p-4 mx-auto">
         <div className="w-full h-96 rounded-3xl">
           <img
@@ -35,7 +32,6 @@ export default function CarDetail() {
           </button>
         </div>
       </div>
-      <Footer />
-    </main>
+    </div>
   );
 }

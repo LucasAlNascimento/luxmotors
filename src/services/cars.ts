@@ -16,3 +16,9 @@ export const getCars = async (filters?: CarFilters): Promise<PageResponse<Car>> 
 
   return data;
 };
+
+export const getCarById = async (carId: string): Promise<Car> => {
+  const { data } = await api.get(`/cars/${carId}`);
+
+  return data;
+};

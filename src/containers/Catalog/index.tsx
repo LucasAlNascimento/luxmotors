@@ -1,3 +1,4 @@
+import BackButton from "../../components/BackButton";
 import Cars from "../../components/Cars";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
@@ -7,6 +8,7 @@ export default function Catalog() {
     <main>
       <div className="flex flex-col items-center">
         <Header />
+				<BackButton />
         <Cars />
         <Footer />
       </div>

@@ -33,7 +33,7 @@ export default function Cars() {
 			)}
 
 			{!isLoading && cars.length > 0 && (
-				<div className="grid grid-cols-1 gap-y-16 w-full place-items-center lg:grid-cols-2">
+				<div className="grid grid-cols-1 gap-y-16 w-full place-items-center lg:grid-cols-3">
 					{cars.map((carro) => (
 						<CarCard key={carro.id} carro={carro} />
 					))}

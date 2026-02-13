@@ -4,24 +4,41 @@ import { getCars } from "../../services/cars";
 import { useSearchParams } from "react-router-dom";
 
 export default function Cars() {
-  const [searchParams] = useSearchParams();
+	const [searchParams] = useSearchParams();
 
-  const marcaSearchParam = searchParams.get("marca") ?? "";
+	const filters = {
+		marcaModelo: searchParams.get("marcaModelo") ?? "",
+		ano: searchParams.get("ano") ?? "",
+		precoDiaria: searchParams.get("precoDiaria") ?? "",
+	};
 
-  const { data, isLoading } = useQuery({
-    queryKey: ["cars", marcaSearchParam],
-    queryFn: () => getCars(marcaSearchParam),
-  });
+	const { data, isLoading } = useQuery({
+		queryKey: ["cars", filters],
+		queryFn: () => getCars(filters),
+	});
 
-  if (isLoading) return <p>Carregando carros...</p>;
+	const cars = data?.content ?? [];
 
-  if (!data?.content.length) return <p>Nenhum carro disponível.</p>;
+	return (
+		<div className="w-full max-w-screen-2xl mx-auto py-36 min-h-screen flex">
+			{isLoading && (
+				<div className="m-auto">Carregando carros...</div>
+			)}
 
-  return (
-    <div className="grid grid-cols-1 gap-y-16 w-full max-w-screen-2xl place-items-center py-36 lg:grid-cols-2">
-      {data.content.map((carro) => (
-        <CarCard key={carro.id} carro={carro} />
-      ))}
-    </div>
-  );
+			{!isLoading && !cars.length && (
+				<div className="m-auto text-center text-gray-500">
+					<p className="text-xl font-semibold">Nenhum carro encontrado</p>
+					<p className="text-sm">Tente alterar os filtros 🔍</p>
+				</div>
+			)}
+
+			{!isLoading && cars.length > 0 && (
+				<div className="grid grid-cols-1 gap-y-16 w-full place-items-center lg:grid-cols-2">
+					{cars.map((carro) => (
+						<CarCard key={carro.id} carro={carro} />
+					))}
+				</div>
+			)}
+		</div>
+	);
 }

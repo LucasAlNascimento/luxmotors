@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Home from "./containers/Home";
 import Catalog from "./containers/Catalog";
-import CarDetail from "./components/CarDetail";
+import CarDetailContainer from "./containers/CarDetail";
 
 export default function Routing() {
   return (
@@ -10,7 +10,7 @@ export default function Routing() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/catalog" element={<Catalog />} />
-        <Route path="/catalog/:id" element={<CarDetail />} />
+        <Route path="/catalog/:id" element={<CarDetailContainer />} />
       </Routes>
     </BrowserRouter>
   );

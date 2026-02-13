@@ -10,3 +10,9 @@ export interface Car {
   descricao: string;
   dataCadastro: string;
 }
+
+export interface CarFilters {
+  marcaModelo?: string;
+  ano?: string;
+  precoDiaria?: string;
+}

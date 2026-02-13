@@ -4,8 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        fabrikatMedium: ["Fabrikat Medium"],
-        fabrikatBold: ["Fabrikat Bold"],
+				sans: ["Inter", "sans-serif"]
       },
       screens: {
         "2xl": "1536px",

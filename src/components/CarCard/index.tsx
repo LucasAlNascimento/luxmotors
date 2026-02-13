@@ -5,11 +5,11 @@ export default function CarCard({ carro }: { carro: Car }) {
   const navigate = useNavigate();
 
   const handleCarClick = () => {
-    navigate(`/catalog/${carro.id}`, { state: { carro } });
+    navigate(`/catalog/${carro.id}`);
   };
 
   return (
-    <div className="w-[90%] font-fabrikatMedium p-2 bg-gray-200 rounded-3xl">
+    <div className="w-[90%] p-2 bg-gray-200 rounded-3xl">
       <div
         title="Selecionar carro"
         className="w-full h-80 rounded-t-xl overflow-hidden hover:opacity-60 duration-700"

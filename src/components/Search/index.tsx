@@ -37,7 +37,7 @@ export default function Search() {
         onSubmit={handleSearch}
       >
         <input
-          className="flex-1 h-14 px-4 rounded-full bg-transparent outline-none font-fabrikatBold"
+          className="flex-1 h-14 px-4 rounded-full bg-transparent outline-none"
           placeholder="Marca ou modelo"
           value={filters.marcaModelo}
           onChange={(e) => handleChange("marcaModelo", e.target.value)}

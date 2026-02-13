@@ -8,7 +8,7 @@ export default function Footer() {
           src="/assets/icons/Brazil.png"
           alt="Ícone Brasil"
         />
-        <p className="text-sm font-fabrikatMedium">Brazil</p>
+        <p className="text-sm">Brazil</p>
       </div>
     </footer>
   );

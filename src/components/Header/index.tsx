@@ -11,13 +11,13 @@ export default function Header() {
         </Link>
       </div>
       <div className="flex justify-between gap-6">
-        <button className="flex items-center justify-center gap-2 font-medium">
-          <FontAwesomeIcon
-            icon={faCircleUser}
-            style={{ color: "#000000", fontSize: "25px" }}
-          />
-          <a className="mt-[2px]">Entrar</a>
-        </button>
+				<Link to="/login" className="flex items-center gap-2 font-medium py-2">
+					<FontAwesomeIcon
+						icon={faCircleUser}
+						style={{ color: "#000000", fontSize: "25px" }}
+					/>
+					<span className="mt-[2px]">Entrar</span>
+				</Link>
 
         <button className="flex items-center justify-center gap-2">
           <FontAwesomeIcon

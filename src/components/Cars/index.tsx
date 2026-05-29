@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import CarCard from "../CarCard";
 import { getCars } from "../../services/cars";
 import { useSearchParams } from "react-router-dom";
+import { Car } from "../../interfaces/car";
 
 export default function Cars() {
 	const [searchParams] = useSearchParams();
@@ -34,7 +35,7 @@ export default function Cars() {
 
 			{!isLoading && cars.length > 0 && (
 				<div className="grid grid-cols-1 gap-y-16 w-full place-items-center lg:grid-cols-3">
-					{cars.map((carro) => (
+					{cars.map((carro: Car) => (
 						<CarCard key={carro.id} carro={carro} />
 					))}
 				</div>

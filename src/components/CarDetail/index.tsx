@@ -19,18 +19,23 @@ export default function CarDetail() {
 
   return (
     <div className="w-full max-w-screen-2xl mx-auto py-24 min-h-screen flex px-10">
-      {isLoading && <div className="m-auto">Carregando carro...</div>}
+      {isLoading && (
+        <div className="m-auto text-xs tracking-[0.3em] uppercase text-gray-400">
+          Carregando...
+        </div>
+      )}
 
       {!isLoading && !carro && (
         <div className="m-auto text-center text-gray-500">
-          <p className="text-xl font-semibold">Carro não encontrado</p>
-          <p className="text-sm">Pode ter sido removido 🚗</p>
+          <p className="text-2xl font-light tracking-widest">Veículo não encontrado</p>
+          <p className="text-xs tracking-[0.2em] uppercase text-gray-400 mt-2">Pode ter sido removido</p>
         </div>
       )}
 
       {!isLoading && carro && (
-        <div className="grid w-full gap-10 items-center lg:grid-cols-2">
-          <div className="w-full h-[400px] rounded-3xl overflow-hidden shadow-xl">
+        <div className="grid w-full gap-8 items-center lg:grid-cols-2">
+
+          <div className="w-full h-[440px] rounded-sm overflow-hidden shadow-lg">
             <img
               src={carro.imgUrl}
               alt={`${carro.marca} ${carro.modelo}`}
@@ -38,51 +43,57 @@ export default function CarDetail() {
             />
           </div>
 
-          <div className="flex flex-col gap-6">
-						<div className="flex flex-col gap-2">
-							<h1 className="text-4xl font-bold">
-								{carro.marca} {carro.modelo}
-							</h1>
+          <div className="flex flex-col gap-8">
 
-							<p className="text-gray-600 leading-relaxed">
-								{carro.descricao}
-							</p>
-						</div>
-
-            <div className="flex flex-wrap gap-3 text-sm">
-              <span className="px-5 py-2 bg-gray-200 rounded-full">
-                Ano: {carro.ano}
+            <div className="flex flex-col gap-2 border-b border-gray-300/60 pb-4">
+              <span className="text-xs tracking-[0.3em] uppercase text-gray-400">
+                {carro.marca}
               </span>
-
-              <span className="px-5 py-2 bg-gray-200 rounded-full">
-                Cor: {carro.cor}
-              </span>
-
-              <span
-                className={`px-5 py-2 rounded-full ${
-                  carro.disponivel
-                    ? "bg-green-200 text-green-800"
-                    : "bg-red-200 text-red-800"
-                }`}
-              >
-                {carro.disponivel ? "Disponível" : "Indisponível"}
-              </span>
+              <h1 className="text-4xl font-light tracking-tight text-gray-900">
+                {carro.modelo}
+              </h1>
+              <p className="text-xs tracking-[0.2em] uppercase text-gray-500 mt-1">
+                {carro.descricao}
+              </p>
             </div>
 
-						<p className="mt-4 text-2xl font-bold text-green-700">
-              {formatPrice(carro.precoDiaria)} / dia
-            </p>
+            <div className="grid grid-cols-3 gap-px bg-gray-300/60">
+              <div className="flex flex-col gap-1 bg-gray-200 px-4 py-4">
+                <span className="text-[10px] tracking-[0.25em] uppercase text-gray-400">Ano</span>
+                <span className="text-sm font-medium text-gray-800">{carro.ano}</span>
+              </div>
+              <div className="flex flex-col gap-1 bg-gray-200 px-4 py-4">
+                <span className="text-[10px] tracking-[0.25em] uppercase text-gray-400">Cor</span>
+                <span className="text-sm font-medium text-gray-800">{carro.cor}</span>
+              </div>
+              <div className="flex flex-col gap-1 bg-gray-200 px-4 py-4">
+                <span className="text-[10px] tracking-[0.25em] uppercase text-gray-400">Status</span>
+                <span className={`text-sm font-medium ${carro.disponivel ? "text-green-700" : "text-red-600"}`}>
+                  {carro.disponivel ? "Disponível" : "Indisponível"}
+                </span>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <span className="text-[10px] tracking-[0.3em] uppercase text-gray-400">Diária a partir de</span>
+              <div className="flex items-baseline gap-2">
+                <span className="text-xl font-light text-gray-900">
+                  {formatPrice(carro.precoDiaria)} / dia
+                </span>
+              </div>
+            </div>
 
             <button
               disabled={!carro.disponivel}
-              className={`mt-4 h-14 rounded-xl transition ${
+              className={`h-14 text-xs tracking-[0.3em] uppercase transition-colors duration-300 ${
                 carro.disponivel
-                  ? "w-44 bg-black text-white hover:bg-yellow-500 hover:text-black hover:scale-105"
-                  : "w-44 bg-gray-400 text-gray-200 cursor-not-allowed"
+                  ? "w-48 bg-black text-white hover:bg-gray-800"
+                  : "w-48 bg-gray-400 text-white cursor-not-allowed"
               }`}
             >
               {carro.disponivel ? "Reservar" : "Indisponível"}
             </button>
+
           </div>
         </div>
       )}

@@ -31,56 +31,52 @@ export default function Search() {
   };
 
   return (
-    <div className="relative z-10 mx-auto my-auto -translate-y-11 w-96 h-24 bg-gray-200 rounded-full shadow-xl md:w-1/2">
+    <div className="relative z-10 mx-auto my-auto -translate-y-11 w-96 bg-gray-200 rounded-md shadow-lg border border-gray-300/80 overflow-hidden md:w-1/2">
       <form
-        className="flex items-center gap-3 px-4 h-full"
+        className="flex items-stretch h-16"
         onSubmit={handleSearch}
       >
         <input
-          className="flex-1 h-14 px-4 rounded-full bg-transparent outline-none"
+          className="flex-1 px-6 bg-transparent outline-none text-xs tracking-[0.2em] uppercase placeholder:text-gray-400 border-r border-gray-400/30"
           placeholder="Marca ou modelo"
           value={filters.marcaModelo}
           onChange={(e) => handleChange("marcaModelo", e.target.value)}
         />
 
-				<NumericFormat
-					className="w-24 h-14 px-3 rounded-full outline-none"
-					placeholder="Ano"
-					allowNegative={false}
-					value={filters.ano}
-					isAllowed={(values) => {
-						const max = 9999;
-						return values.floatValue == null || values.floatValue <= max;
-					}}
-					onValueChange={(values) =>
-						handleChange("ano", values.value)
-					}
-				/>
+        <NumericFormat
+          className="w-24 px-4 bg-transparent outline-none text-xs tracking-[0.2em] placeholder:text-gray-400 border-r border-gray-400/30"
+          placeholder="Ano"
+          allowNegative={false}
+          value={filters.ano}
+          isAllowed={(values) => {
+            const max = 9999;
+            return values.floatValue == null || values.floatValue <= max;
+          }}
+          onValueChange={(values) => handleChange("ano", values.value)}
+        />
 
         <NumericFormat
-					className="w-44 h-14 px-3 rounded-full outline-none"
-					placeholder="Valor"
-					thousandSeparator="."
-					decimalSeparator=","
-					prefix="R$ "
-					decimalScale={2}
-					fixedDecimalScale
-					allowNegative={false}
-					value={filters.precoDiaria}
-					isAllowed={(values) => {
-						const max = 999999;
-						return values.floatValue == null || values.floatValue <= max;
-					}}
-					onValueChange={(values) =>
-						handleChange("precoDiaria", values.value)
-					}
-				/>
+          className="w-40 px-4 bg-transparent outline-none text-xs tracking-[0.2em] placeholder:text-gray-400 border-r border-gray-400/30"
+          placeholder="Valor"
+          thousandSeparator="."
+          decimalSeparator=","
+          prefix="R$ "
+          decimalScale={2}
+          fixedDecimalScale
+          allowNegative={false}
+          value={filters.precoDiaria}
+          isAllowed={(values) => {
+            const max = 999999;
+            return values.floatValue == null || values.floatValue <= max;
+          }}
+          onValueChange={(values) => handleChange("precoDiaria", values.value)}
+        />
 
         <button
           type="submit"
-          className="flex items-center justify-center w-14 h-14 bg-black text-white rounded-full hover:scale-105 duration-300"
+          className="flex items-center justify-center w-14 bg-black text-white hover:bg-gray-900 transition-colors duration-300"
         >
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
+          <FontAwesomeIcon icon={faMagnifyingGlass} className="text-xs" />
         </button>
       </form>
     </div>

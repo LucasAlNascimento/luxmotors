@@ -1,6 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function BackButton({ className = "" }) {
   const navigate = useNavigate();
@@ -10,15 +8,15 @@ export default function BackButton({ className = "" }) {
       onClick={() => navigate(-1)}
       aria-label="Voltar"
       className={`
-				absolute top-24 left-10
-        flex items-center gap-2
-        text-gray-600 hover:text-black
-        font-medium
-        transition
+        absolute top-24 left-10
+        flex items-center gap-3
+        text-[10px] tracking-[0.3em] uppercase text-gray-400
+        hover:text-gray-900 transition-colors duration-300
+        group
         ${className}
       `}
     >
-      <FontAwesomeIcon icon={faArrowLeft} />
+      <span className="w-6 h-px bg-gray-400 group-hover:w-8 group-hover:bg-gray-900 transition-all duration-300" />
       Voltar
     </button>
   );

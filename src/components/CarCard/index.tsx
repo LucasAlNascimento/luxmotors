@@ -4,28 +4,34 @@ import { Car } from "../../interfaces/car";
 export default function CarCard({ carro }: { carro: Car }) {
   const navigate = useNavigate();
 
-  const handleCarClick = () => {
-    navigate(`/catalog/${carro.id}`);
-  };
-
   return (
-    <div className="w-[90%] p-2 bg-gray-200 rounded-3xl">
-      <div
-        title="Selecionar carro"
-        className="w-full h-80 rounded-t-xl overflow-hidden hover:opacity-60 duration-700"
-        onClick={handleCarClick}
-      >
+    <div
+      onClick={() => navigate(`/catalog/${carro.id}`)}
+      title="Ver detalhes"
+      className="w-full h-fit bg-gray-200 border border-gray-300/60 shadow-sm cursor-pointer group"
+    >
+      {/* Imagem */}
+      <div className="w-full h-64 overflow-hidden">
         <img
-          className="w-full h-full object-cover cursor-pointer"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
           src={carro.imgUrl}
           alt={`${carro.marca} ${carro.modelo}`}
         />
       </div>
-      <div className="flex flex-col justify-center items-center w-full p-4 text-xl text-gray-200 bg-gray-900 rounded-b-xl">
-        <h2>
-          {carro.marca} {carro.modelo}
-        </h2>
-        <p>Ano: {carro.ano}</p>
+
+      {/* Info */}
+      <div className="flex justify-between items-end px-5 py-4 border-t border-gray-300/60">
+        <div className="flex flex-col gap-1">
+          <span className="text-[10px] tracking-[0.25em] uppercase text-gray-400">
+            {carro.marca}
+          </span>
+          <h2 className="text-lg font-light tracking-tight text-gray-900">
+            {carro.modelo}
+          </h2>
+        </div>
+        <span className="text-[10px] tracking-[0.2em] uppercase text-gray-400 mb-1">
+          {carro.ano}
+        </span>
       </div>
     </div>
   );

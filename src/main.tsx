@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Routing from "./Routing";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Toaster } from "sonner";
 
 import "./styles/styles.css";
 
@@ -27,7 +26,22 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Providers>
       <Routing />
-      <ToastContainer position="top-right" autoClose={3000} />
+      <Toaster
+        position="top-right"
+        theme="light"
+				offset={{ top: 80, right: 16 }}
+        toastOptions={{
+          style: {
+            fontFamily: "DM Sans, sans-serif",
+            fontSize: "11px",
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+            borderRadius: "0",
+            border: "1px solid #e5e7eb",
+            boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
+          },
+        }}
+      />
     </Providers>
   </React.StrictMode>,
 );

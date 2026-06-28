@@ -2,7 +2,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { listFavoritesDetailed, removeFavorite } from "../../services/favorites";
 import { getUsuarioLogado } from "../../services/auth";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { Car } from "../../interfaces/car";
 import { useState } from "react";
 

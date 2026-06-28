@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { createUser } from "../../services/auth";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 export default function SignUp() {
   const [name, setName] = useState("");

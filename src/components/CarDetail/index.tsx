@@ -5,7 +5,7 @@ import { getCarById } from "../../services/cars";
 import { addFavorite, removeFavorite, listFavorites } from "../../services/favorites";
 import CarViewer from "../CarViewer";
 import { getUsuarioLogado, isAuthenticated } from "../../services/auth";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 export default function CarDetail() {
 	const { id } = useParams();

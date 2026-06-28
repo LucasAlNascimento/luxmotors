@@ -21,7 +21,7 @@ export default function Cars() {
   const cars = data?.content ?? [];
 
   return (
-    <div className="w-full max-w-screen-2xl mx-auto py-36 min-h-screen flex px-10">
+    <div className="w-full mx-auto py-36 min-h-screen flex px-10">
 
       {isLoading && (
         <div className="m-auto text-[10px] tracking-[0.3em] uppercase text-gray-400">

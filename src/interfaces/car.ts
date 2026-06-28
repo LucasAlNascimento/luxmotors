@@ -9,6 +9,8 @@ export interface Car {
   imgUrl: string;
   descricao: string;
   dataCadastro: string;
+	hasModel3d: boolean;
+	model3dUrl: string | null;
 }
 
 export interface CarFilters {

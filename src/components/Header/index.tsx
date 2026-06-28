@@ -23,7 +23,7 @@ export default function Header() {
 
       <div className="flex items-center gap-8">
         {logado && usuario && (
-          <span className="text-[10px] tracking-[0.3em] uppercase text-gray-500">
+          <span className="text-[10px] tracking-[0.2em] uppercase text-gray-400">
             Olá, {usuario.nome}
           </span>
         )}

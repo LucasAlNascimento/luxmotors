@@ -1,5 +1,12 @@
 import { CreateUser } from "../interfaces/create-user";
 import { api } from "./api";
+import { jwtDecode } from "jwt-decode";
+
+interface TokenPayload {
+  sub: string;
+  nome: string;
+  exp: number;
+}
 
 export const createUser = async (user: CreateUser): Promise<CreateUser> => {
   const { data } = await api.post(`/users`, user);
@@ -22,4 +29,10 @@ export const getToken = () => {
 
 export const isAuthenticated = () => {
   return !!getToken();
+};
+
+export const getUsuarioLogado = (): TokenPayload | null => {
+  const token = getToken();
+  if (!token) return null;
+  return jwtDecode<TokenPayload>(token);
 };

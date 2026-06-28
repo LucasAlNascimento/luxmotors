@@ -1,14 +1,31 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../../services/auth";
+import { toast } from "react-toastify";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    try {
+      setLoading(true);
+      await login(email, password);
+      toast.success("Login realizado com sucesso!");
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+      toast.error("Email ou senha inválidos");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -59,9 +76,10 @@ export default function Login() {
 
           <button
             type="submit"
-            className="mt-4 h-12 w-full bg-black text-white text-[10px] tracking-[0.3em] uppercase hover:bg-gray-800 transition-colors duration-300"
+            disabled={loading}
+            className="mt-4 h-12 w-full bg-black text-white text-[10px] tracking-[0.3em] uppercase hover:bg-gray-800 transition-colors duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
-            Entrar
+            {loading ? "Aguarde..." : "Entrar"}
           </button>
         </form>
 

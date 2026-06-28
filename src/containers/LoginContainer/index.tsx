@@ -4,7 +4,7 @@ import Login from "../../components/Login";
 
 export default function LoginContainer() {
   return (
-    <main className="w-full h-screen">
+    <main className="w-full min-h-screen flex flex-col">
       <Header />
       <Login />
       <Footer />

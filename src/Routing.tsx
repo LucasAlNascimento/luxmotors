@@ -5,6 +5,7 @@ import Catalog from "./containers/Catalog";
 import CarDetailContainer from "./containers/CarDetail";
 import LoginContainer from "./containers/LoginContainer";
 import SignUpContainer from "./containers/SignUpContainer";
+import FavoritesContainer from "./containers/Favorites";
 
 export default function Routing() {
   return (
@@ -15,6 +16,7 @@ export default function Routing() {
         <Route path="/catalog/:id" element={<CarDetailContainer />} />
 				<Route path="/login" element={<LoginContainer />} />
 				<Route path="/signup" element={<SignUpContainer />} />
+				<Route path="/favorites" element={<FavoritesContainer />} />
       </Routes>
     </BrowserRouter>
   );

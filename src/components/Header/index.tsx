@@ -41,9 +41,9 @@ export default function Header() {
 
             <Divider />
 
-            <button className={navItemClass}>
+            <Link to="/favorites" className={navItemClass}>
               Favoritos
-            </button>
+            </Link>
 
             <Divider />
 

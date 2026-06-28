@@ -59,7 +59,7 @@ export default function Header() {
 
             <Divider />
 
-            <Link to="/register" className={navItemClass}>
+            <Link to="/signup" className={navItemClass}>
               Cadastrar
             </Link>
           </>

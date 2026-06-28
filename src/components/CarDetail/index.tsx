@@ -1,9 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import { getCarById } from "../../services/cars";
 import { addFavorite, removeFavorite, listFavorites } from "../../services/favorites";
 import CarViewer from "../CarViewer";
-import { useState } from "react";
 import { getUsuarioLogado, isAuthenticated } from "../../services/auth";
 import { toast } from "react-toastify";
 
@@ -16,18 +16,27 @@ export default function CarDetail() {
 	const usuario = getUsuarioLogado();
 	const logado = isAuthenticated();
 
-	const { data: carro, isLoading } = useQuery({
+	useEffect(() => {
+		if (usuario?.id) {
+			queryClient.removeQueries({ queryKey: ["favorites", usuario.id] });
+		}
+	}, [id, usuario?.id, queryClient]);
+
+	const { data: carro, isLoading: isLoadingCarro } = useQuery({
 		queryKey: ["car", id],
 		queryFn: () => getCarById(id!),
 		enabled: !!id,
 	});
 
-	const { data: favoritos = [] } = useQuery({
+	const { data: favoritos = [], isLoading: isLoadingFavoritos } = useQuery({
 		queryKey: ["favorites", usuario?.id],
 		queryFn: () => listFavorites(usuario!.id),
 		enabled: !!usuario?.id,
+		staleTime: 0,
+		refetchOnMount: true,
 	});
 
+	const isReady = !isLoadingCarro && (usuario ? !isLoadingFavoritos : true);
 	const isFavorito = favoritos.includes(id!);
 
 	const { mutate: toggleFavorito, isPending } = useMutation({
@@ -58,20 +67,20 @@ export default function CarDetail() {
 
 	return (
 		<div className="w-full max-w-screen-2xl mx-auto py-24 min-h-screen flex px-10">
-			{isLoading && (
+			{!isReady && (
 				<div className="m-auto text-xs tracking-[0.3em] uppercase text-gray-400">
 					Carregando...
 				</div>
 			)}
 
-			{!isLoading && !carro && (
+			{isReady && !carro && (
 				<div className="m-auto text-center text-gray-500">
 					<p className="text-2xl font-light tracking-widest">Veículo não encontrado</p>
 					<p className="text-xs tracking-[0.2em] uppercase text-gray-400 mt-2">Pode ter sido removido</p>
 				</div>
 			)}
 
-			{!isLoading && carro && (
+			{isReady && carro && (
 				<div className="grid w-full gap-8 items-center lg:grid-cols-2">
 
 					<div className="w-full h-[440px] rounded-sm overflow-hidden shadow-lg relative">
@@ -159,7 +168,7 @@ export default function CarDetail() {
 							className={`h-14 text-xs tracking-[0.3em] uppercase transition-colors duration-300 ${carro.disponivel
 								? "w-48 bg-black text-white hover:bg-gray-800"
 								: "w-48 bg-gray-400 text-white cursor-not-allowed"
-								}`}
+							}`}
 						>
 							{carro.disponivel ? "Reservar" : "Indisponível"}
 						</button>

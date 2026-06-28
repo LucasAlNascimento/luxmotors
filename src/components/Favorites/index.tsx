@@ -4,19 +4,28 @@ import { listFavoritesDetailed, removeFavorite } from "../../services/favorites"
 import { getUsuarioLogado } from "../../services/auth";
 import { toast } from "react-toastify";
 import { Car } from "../../interfaces/car";
+import { useState } from "react";
 
 export default function Favorites() {
 	const usuario = getUsuarioLogado();
 	const queryClient = useQueryClient();
+	const [removingId, setRemovingId] = useState<string | null>(null);
 
-	const { data: favoritos = [], isLoading } = useQuery({
+	const { data: favoritos = [], isLoading, isFetching } = useQuery({
 		queryKey: ["favorites-detailed", usuario?.id],
 		queryFn: () => listFavoritesDetailed(usuario!.id),
 		enabled: !!usuario?.id,
+		staleTime: 0,
+		refetchOnMount: true,
 	});
 
+	const isReady = !isLoading && !isFetching;
+
 	const { mutate: handleRemove } = useMutation({
-		mutationFn: (carId: string) => removeFavorite(usuario!.id, carId),
+		mutationFn: (carId: string) => {
+			setRemovingId(carId);
+			return removeFavorite(usuario!.id, carId);
+		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["favorites-detailed", usuario?.id] });
 			queryClient.invalidateQueries({ queryKey: ["favorites", usuario?.id] });
@@ -25,25 +34,28 @@ export default function Favorites() {
 		onError: () => {
 			toast.error("Erro ao remover favorito");
 		},
+		onSettled: () => {
+			setRemovingId(null);
+		},
 	});
 
 	const formatPrice = (value: number) =>
 		value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
 	return (
-		<div className="w-full max-w-screen-2xl mx-auto py-24 min-h-screen px-10">
+		<div className="w-full mx-auto py-24 min-h-screen px-10">
 
 			<div className="flex flex-col gap-2 border-b border-gray-300/60 pb-8 mb-2 mt-16">
 				<h1 className="text-4xl font-light tracking-tight text-gray-900">Favoritos</h1>
 			</div>
 
-			{isLoading && (
-				<div className="text-xs tracking-[0.3em] uppercase text-gray-400">
+			{!isReady && (
+				<div className="text-xs tracking-[0.3em] uppercase text-gray-400 mt-8">
 					Carregando...
 				</div>
 			)}
 
-			{!isLoading && favoritos.length === 0 && (
+			{isReady && favoritos.length === 0 && (
 				<div className="flex flex-col items-center justify-center py-24 gap-4 text-center">
 					<p className="text-2xl font-light tracking-widest text-gray-500">Nenhum favorito ainda</p>
 					<p className="text-xs tracking-[0.2em] uppercase text-gray-400">
@@ -58,8 +70,8 @@ export default function Favorites() {
 				</div>
 			)}
 
-			{!isLoading && favoritos.length > 0 && (
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-300/60">
+			{isReady && favoritos.length > 0 && (
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-300/60">
 					{favoritos.map((carro: Car) => (
 						<div key={carro.id} className="bg-gray-200 flex flex-col">
 							<Link to={`/catalog/${carro.id}`} className="overflow-hidden">
@@ -84,7 +96,8 @@ export default function Favorites() {
 
 									<button
 										onClick={() => handleRemove(carro.id)}
-										className="text-gray-400 hover:text-gray-900 transition-colors duration-300"
+										disabled={removingId === carro.id}
+										className="text-gray-400 hover:text-gray-900 transition-colors duration-300 disabled:opacity-50"
 										title="Remover dos favoritos"
 									>
 										<svg

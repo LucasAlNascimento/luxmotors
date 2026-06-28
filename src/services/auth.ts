@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode";
 interface TokenPayload {
   sub: string;
   nome: string;
+	id: string;
   exp: number;
 }
 

@@ -1,24 +1,60 @@
-import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useParams, useNavigate } from "react-router-dom";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getCarById } from "../../services/cars";
+import { addFavorite, removeFavorite, listFavorites } from "../../services/favorites";
 import CarViewer from "../CarViewer";
 import { useState } from "react";
+import { getUsuarioLogado, isAuthenticated } from "../../services/auth";
+import { toast } from "react-toastify";
 
 export default function CarDetail() {
 	const { id } = useParams();
 	const [view3D, setView3D] = useState(false);
-	
+	const navigate = useNavigate();
+	const queryClient = useQueryClient();
+
+	const usuario = getUsuarioLogado();
+	const logado = isAuthenticated();
+
 	const { data: carro, isLoading } = useQuery({
 		queryKey: ["car", id],
 		queryFn: () => getCarById(id!),
 		enabled: !!id,
 	});
 
+	const { data: favoritos = [] } = useQuery({
+		queryKey: ["favorites", usuario?.id],
+		queryFn: () => listFavorites(usuario!.id),
+		enabled: !!usuario?.id,
+	});
+
+	const isFavorito = favoritos.includes(id!);
+
+	const { mutate: toggleFavorito, isPending } = useMutation({
+		mutationFn: async () => {
+			if (!logado || !usuario) {
+				navigate("/login");
+				return null;
+			}
+			if (isFavorito) {
+				await removeFavorite(usuario.id, id!);
+			} else {
+				await addFavorite(usuario.id, id!);
+			}
+			return true;
+		},
+		onSuccess: (result) => {
+			if (!result) return;
+			queryClient.invalidateQueries({ queryKey: ["favorites", usuario?.id] });
+			toast.success(isFavorito ? "Removido dos favoritos" : "Adicionado aos favoritos");
+		},
+		onError: () => {
+			toast.error("Erro ao atualizar favoritos");
+		},
+	});
+
 	const formatPrice = (value: number) =>
-		value.toLocaleString("pt-BR", {
-			style: "currency",
-			currency: "BRL",
-		});
+		value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
 	return (
 		<div className="w-full max-w-screen-2xl mx-auto py-24 min-h-screen flex px-10">
@@ -39,7 +75,6 @@ export default function CarDetail() {
 				<div className="grid w-full gap-8 items-center lg:grid-cols-2">
 
 					<div className="w-full h-[440px] rounded-sm overflow-hidden shadow-lg relative">
-
 						{view3D ? (
 							<CarViewer modelUrl={carro.model3dUrl} />
 						) : (
@@ -63,9 +98,28 @@ export default function CarDetail() {
 					<div className="flex flex-col gap-8">
 
 						<div className="flex flex-col gap-2 border-b border-gray-300/60 pb-4">
-							<span className="text-xs tracking-[0.3em] uppercase text-gray-400">
-								{carro.marca}
-							</span>
+							<div className="flex justify-between items-start">
+								<span className="text-xs tracking-[0.3em] uppercase text-gray-400">
+									{carro.marca}
+								</span>
+								<button
+									onClick={() => toggleFavorito()}
+									disabled={isPending}
+									className="text-gray-400 hover:text-gray-900 transition-colors duration-300 disabled:opacity-50"
+									title={logado ? (isFavorito ? "Remover dos favoritos" : "Adicionar aos favoritos") : "Faça login para favoritar"}
+								>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 24 24"
+										fill={isFavorito ? "currentColor" : "none"}
+										stroke="currentColor"
+										strokeWidth="1.5"
+										className={`w-5 h-5 ${isFavorito ? "text-gray-900" : ""}`}
+									>
+										<path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+									</svg>
+								</button>
+							</div>
 							<h1 className="text-4xl font-light tracking-tight text-gray-900">
 								{carro.modelo}
 							</h1>
@@ -103,8 +157,8 @@ export default function CarDetail() {
 						<button
 							disabled={!carro.disponivel}
 							className={`h-14 text-xs tracking-[0.3em] uppercase transition-colors duration-300 ${carro.disponivel
-									? "w-48 bg-black text-white hover:bg-gray-800"
-									: "w-48 bg-gray-400 text-white cursor-not-allowed"
+								? "w-48 bg-black text-white hover:bg-gray-800"
+								: "w-48 bg-gray-400 text-white cursor-not-allowed"
 								}`}
 						>
 							{carro.disponivel ? "Reservar" : "Indisponível"}

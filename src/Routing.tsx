@@ -6,10 +6,12 @@ import CarDetailContainer from "./containers/CarDetail";
 import LoginContainer from "./containers/LoginContainer";
 import SignUpContainer from "./containers/SignUpContainer";
 import FavoritesContainer from "./containers/Favorites";
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function Routing() {
   return (
     <BrowserRouter>
+			<ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/catalog" element={<Catalog />} />
